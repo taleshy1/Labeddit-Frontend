@@ -21,7 +21,7 @@ export function useForms(initialData: FormInput) {
 
   const [input, setInput] = useState(initialData);
 
-  const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeInput = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
