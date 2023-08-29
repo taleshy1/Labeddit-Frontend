@@ -2,12 +2,12 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { CommomButton } from "../../components/commonButton";
 import { InputField } from "../../components/inputField";
-import { BASE_URL } from "../../constants/baseUrl";
 import { LoginInterface, useForms } from "../../hooks/useForms/useForms";
-import axios from "axios"
-import { goToSignupPage } from "../../router/coordinator";
+import { goToFeed, goToSignupPage } from "../../router/coordinator";
+import { login } from "../../services/authService";
+import { useState } from "react"
 export function LoginPage() {
-
+  const [wrongInfos, setWrongInfos] = useState(false)
   const form: LoginInterface = {
     email: "",
     password: ""
@@ -22,17 +22,19 @@ export function LoginPage() {
 
   const onSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    try {
-      const body = input
-
-      const result = await axios.post(`${BASE_URL}/users/login`, body)
-      alert(result.data.message)
-      localStorage.setItem("token", result.data.token)
-      clear
-    } catch (error) {
-      alert("erro")
-      console.log(error)
+    const body: LoginInterface = {
+      email: "email" in input ? input["email"] : "",
+      password: "password" in input ? input["password"] : ""
     }
+    const response: string = await login(body)
+    if (response === "Login efetuado com sucesso") {
+      setWrongInfos(false)
+      clear(e)
+      goToFeed(navigate)
+      return
+    }
+    setWrongInfos(true)
+    clear
   }
 
   return (
@@ -47,6 +49,7 @@ export function LoginPage() {
 
       <form className=" flex flex-col items-center justify-center "
         onSubmit={onSubmitLogin}>
+        {wrongInfos && <p className="text-red-500 mb-2">Email ou senha incorretos</p>}
         <InputField
           placeHolder="E-mail"
           type="text"
