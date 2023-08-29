@@ -6,19 +6,23 @@ import { LoginInterface, useForms } from "../../hooks/useForms/useForms";
 import { goToFeed, goToSignupPage } from "../../router/coordinator";
 import { login } from "../../services/authService";
 import { useState } from "react"
+import { dataValidation } from "../../services/dataValidationService";
 export function LoginPage() {
   const [wrongInfos, setWrongInfos] = useState(false)
+  const [emailIsValid, setEmailIsValid] = useState(true)
+  const [errorMessage, setErrorMessage] = useState("Email ou senha incorretos")
+  const navigate = useNavigate()
+
   const form: LoginInterface = {
     email: "",
     password: ""
   }
 
-  const navigate = useNavigate()
-  const { input, changeInput, clear } = useForms(form)
-
   const goToSignup = () => {
     goToSignupPage(navigate)
   }
+
+  const { input, changeInput, clear } = useForms(form)
 
   const onSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -26,17 +30,27 @@ export function LoginPage() {
       email: "email" in input ? input["email"] : "",
       password: "password" in input ? input["password"] : ""
     }
+
+    if (!dataValidation("email", body.email)) {
+      setEmailIsValid(false)
+      setErrorMessage("Insira um email válido")
+      return
+    } else {
+      setErrorMessage("Email ou senha incorretos")
+      setEmailIsValid(true)
+    }
+    setEmailIsValid(true)
     const response: string = await login(body)
     if (response === "Login efetuado com sucesso") {
       setWrongInfos(false)
-      clear(e)
+      clear
       goToFeed(navigate)
       return
     }
     setWrongInfos(true)
+    setErrorMessage("Email ou senha incorretos")
     clear
   }
-
   return (
     <main className="min-h-screen items-center justify-center flex flex-col">
       <img
@@ -49,8 +63,9 @@ export function LoginPage() {
 
       <form className=" flex flex-col items-center justify-center "
         onSubmit={onSubmitLogin}>
-        {wrongInfos && <p className="text-red-500 mb-2">Email ou senha incorretos</p>}
+        {(!emailIsValid || wrongInfos) && <p className="text-red-500 mb-2">{errorMessage}</p>}
         <InputField
+          isValid={emailIsValid}
           placeHolder="E-mail"
           type="text"
           autocomplete="on"
@@ -59,6 +74,7 @@ export function LoginPage() {
           onChange={changeInput}
         />
         <InputField
+          isValid={true}
           placeHolder="Senha"
           type="password"
           autocomplete="off"
