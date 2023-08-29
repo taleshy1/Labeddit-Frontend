@@ -4,8 +4,10 @@ import { ContentBox } from "../../components/contentBox";
 import { Header } from "../../components/header";
 import { PostInterface, useForms } from "../../hooks/useForms/useForms";
 import { useState } from "react"
+import { useSecure } from "../../hooks/useSecure/useSecure";
 
 export function CommentsPage() {
+  useSecure()
   const [comments, setComments] = useState([{
     name: "ALGM DA REUNIAO",
     content: "O cara é pobre kkkkkk",
