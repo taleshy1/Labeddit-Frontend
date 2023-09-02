@@ -1,56 +1,56 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
-import { CommomButton } from "../../components/commonButton";
-import { InputField } from "../../components/inputField";
+import { CommomButton } from "../../components/CommonButton";
+import { InputField } from "../../components/InputField";
 import { LoginInterface, useForms } from "../../hooks/useForms/useForms";
 import { goToFeed, goToSignupPage } from "../../router/coordinator";
 import { login } from "../../services/authService";
-import { useState } from "react"
+import { useState } from "react";
 import { dataValidation } from "../../services/dataValidationService";
 export function LoginPage() {
-  const [wrongInfos, setWrongInfos] = useState(false)
-  const [emailIsValid, setEmailIsValid] = useState(true)
-  const [errorMessage, setErrorMessage] = useState("Email ou senha incorretos")
-  const navigate = useNavigate()
+  const [wrongInfos, setWrongInfos] = useState(false);
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("Email ou senha incorretos");
+  const navigate = useNavigate();
 
   const form: LoginInterface = {
     email: "",
-    password: ""
-  }
+    password: "",
+  };
 
   const goToSignup = () => {
-    goToSignupPage(navigate)
-  }
+    goToSignupPage(navigate);
+  };
 
-  const { input, changeInput, clear } = useForms(form)
+  const { input, changeInput, clear } = useForms(form);
 
   const onSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     const body: LoginInterface = {
       email: "email" in input ? input["email"] : "",
-      password: "password" in input ? input["password"] : ""
-    }
+      password: "password" in input ? input["password"] : "",
+    };
 
     if (!dataValidation("email", body.email)) {
-      setEmailIsValid(false)
-      setErrorMessage("Insira um email válido")
-      return
+      setEmailIsValid(false);
+      setErrorMessage("Insira um email válido");
+      return;
     } else {
-      setErrorMessage("Email ou senha incorretos")
-      setEmailIsValid(true)
+      setErrorMessage("Email ou senha incorretos");
+      setEmailIsValid(true);
     }
-    setEmailIsValid(true)
-    const response: string = await login(body)
+    setEmailIsValid(true);
+    const response: string = await login(body);
     if (response === "Login efetuado com sucesso") {
-      setWrongInfos(false)
-      clear
-      goToFeed(navigate)
-      return
+      setWrongInfos(false);
+      clear;
+      goToFeed(navigate);
+      return;
     }
-    setWrongInfos(true)
-    setErrorMessage("Email ou senha incorretos")
-    clear
-  }
+    setWrongInfos(true);
+    setErrorMessage("Email ou senha incorretos");
+    clear;
+  };
   return (
     <main className="min-h-screen items-center justify-center flex flex-col">
       <img
@@ -61,9 +61,13 @@ export function LoginPage() {
       <h1 className="font-ibm text-4xl text-[#373737]">LabEddit</h1>
       <h2 className="mb-[6.69rem] ">O projeto de rede social da Labenu</h2>
 
-      <form className=" flex flex-col items-center justify-center "
-        onSubmit={onSubmitLogin}>
-        {(!emailIsValid || wrongInfos) && <p className="text-red-500 mb-2">{errorMessage}</p>}
+      <form
+        className=" flex flex-col items-center justify-center "
+        onSubmit={onSubmitLogin}
+      >
+        {(!emailIsValid || wrongInfos) && (
+          <p className="text-red-500 mb-2">{errorMessage}</p>
+        )}
         <InputField
           isValid={emailIsValid}
           placeHolder="E-mail"
@@ -85,7 +89,12 @@ export function LoginPage() {
         <div className="mt-14 flex flex-col gap-5 w-[22.5rem]">
           <CommomButton text="Continuar" fill={true} type="submit" />
           <div className="h-px bg-gradient-to-r from-[#FF6489] to-[#F9B24E]" />
-          <CommomButton text="Crie uma conta!" fill={false} type="button" action={goToSignup} />
+          <CommomButton
+            text="Crie uma conta!"
+            fill={false}
+            type="button"
+            action={goToSignup}
+          />
         </div>
       </form>
     </main>
