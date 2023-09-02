@@ -12,7 +12,7 @@ export function CommomButton({ text, fill, type, action }: Button) {
         'text-white bg-gradient-to-r from-[#FF6489] to-[#F9B24E]'
         :
         'text-orange border border-[#FE7E02]'}
-        text-lg text-sans rounded-3xl py-3`}
+        text-lg font-sans rounded-3xl py-3`}
       type={type}
       onClick={action && action}
     >

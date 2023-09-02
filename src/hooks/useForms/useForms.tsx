@@ -18,15 +18,18 @@ export interface PostInterface {
 export type FormInput = LoginInterface | SignupInterface | PostInterface;
 
 export function useForms(initialData: FormInput) {
-
   const [input, setInput] = useState(initialData);
 
-  const changeInput = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+  const changeInput = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
   const clear = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     setInput(initialData);
   };
 

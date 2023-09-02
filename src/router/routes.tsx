@@ -11,7 +11,7 @@ export function RouterPage() {
         <Route index element={<Feed />} />
         <Route path="/signup" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/comments/:id" element={<CommentsPage />} />
+        <Route path="/post/:id/comments" element={<CommentsPage />} />
       </Routes>
     </BrowserRouter>
   )

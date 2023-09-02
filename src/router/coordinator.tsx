@@ -8,4 +8,7 @@ export const goToLoginPage = (navigate: NavigateFunction) => {
 }
 export const goToFeed = (navigate: NavigateFunction) => {
   navigate("/")
+}
+export const goToPostComments = (navigate: NavigateFunction, postId: string) => {
+  navigate(`/post/${postId}/comments`)
 } 
