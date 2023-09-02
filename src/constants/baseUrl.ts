@@ -1,2 +1,2 @@
 export const BASE_URL =
-  "http://localhost:3003";
+  "https://labeddit-pc3q.onrender.com";

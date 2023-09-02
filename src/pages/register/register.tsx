@@ -27,6 +27,7 @@ export function RegisterPage() {
 
   const onSubmitSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const body: SignupInterface = {
       email: "email" in input ? input["email"] : "",
       name: "name" in input ? input["name"] : "",
@@ -70,7 +71,6 @@ export function RegisterPage() {
     setEmailIsValid(true);
 
     const response = await signup(body);
-
     if (response === "Usuario cadastrado com sucesso") {
       setAnyOtherError(false);
       clear;
@@ -83,7 +83,6 @@ export function RegisterPage() {
     ) {
       setEmailIsValid(false);
       setAnyOtherError(false);
-
       setErrorMessage(response.response.data);
       return;
     }
