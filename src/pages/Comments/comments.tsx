@@ -78,6 +78,7 @@ export function CommentsPage() {
 
         await createComment(axiosBody, axiosHeaders, postId || "");
         clear(e);
+        fetchPostData();
         fetchCommentsData();
       } catch (error) {
         if (typeof error === "object") {
@@ -87,7 +88,7 @@ export function CommentsPage() {
         }
       }
     },
-    [input, token, postId, fetchCommentsData, clear]
+    [input, token, postId, fetchCommentsData, clear, fetchPostData]
   );
 
   const handleLikeOrDislike = useCallback(
