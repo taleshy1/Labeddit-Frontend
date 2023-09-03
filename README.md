@@ -87,3 +87,5 @@
 
 -- Observe no seu terminal para qual endereço e porta estão sendo apontados, depois acesse esse endereço usando um navegador web.
 ```
+
+## [Repositório Backend](https://github.com/taleshy1/Labeddit-Backend)
