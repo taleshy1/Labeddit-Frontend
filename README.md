@@ -15,7 +15,7 @@
 ## Páginas
 ### Página de login
 <div> 
-  <img src="https://github.com/taleshy1/Labeddit-Frontend/assets/58015291/5385c690-5954-4fc0-8755-67f8c33f8fc1" alt="Imagem representando a página de login da aplicação"/>
+  <img src="https://github.com/taleshy1/Labeddit-Frontend/assets/58015291/a16f37c8-0703-4b32-bd8c-7e424357664e" alt="Imagem representando a página de login da aplicação"/>
 
 > <p>Página de login.</p>
 </div>
@@ -23,7 +23,7 @@
 
 ### Página de registro
 <div>
-  <img src="https://github.com/taleshy1/Labeddit-Frontend/assets/58015291/f2d03dd1-4d03-42e7-8615-b3777761a1d5" alt="Imagem representando a página de signUp"/> 
+  <img src="https://github.com/taleshy1/Labeddit-Frontend/assets/58015291/733c5083-a89f-4afe-a384-5ec40fe2a803" alt="Imagem representando a página de signUp"/> 
   
   ><p>Página de registro.</p>
 </div>
@@ -31,16 +31,16 @@
 
 ### Página do feed
 <div>
-  <img src="https://github.com/taleshy1/Labeddit-Frontend/assets/58015291/36de2a61-67b2-4e98-b91d-cf56bff3d2ca" alt="Imagem representando a página de Feed"/> 
+  <img src="https://github.com/taleshy1/Labeddit-Frontend/assets/58015291/7ee671a9-17f2-4d55-bd0f-5c2cc3b82707" alt="Imagem representando a página de Feed"/> 
   
-  ><p>Páfina de Feed.</p>
+  ><p>Página de Feed.</p>
 </div>
 
 ### Página dos comentários
 <div>
-  <img src="https://github.com/taleshy1/Labeddit-Frontend/assets/58015291/655ca22b-85ed-4675-9665-07d5c97e42b8" alt="Imagem representando a página de comentários"/> 
+  <img src="https://github.com/taleshy1/Labeddit-Frontend/assets/58015291/3ebe6178-6f74-4f3e-831f-ab2b9387f33e" alt="Imagem representando a página de comentários"/> 
   
-  ><p>Páfina de comentários.</p>
+  ><p>Página de comentários.</p>
 </div>
 
 
